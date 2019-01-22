@@ -43,6 +43,7 @@ var uglify = require('gulp-uglify');
 var bump = require('gulp-bump');
 var git = require('gulp-git');
 var fs = require('fs');
+var babel = require('gulp-babel');
 
 function ignoreerror() {
   /* jshint ignore:start */ // using `this` in this context is weird 
@@ -140,6 +141,7 @@ function startGulp(name, opts) {
 
     gulp.task('browser:compressed', ['browser:uncompressed'], function() {
       return gulp.src(fullname + '.js')
+        .pipe(babel())
         .pipe(uglify({
           mangle: true,
           compress: true
