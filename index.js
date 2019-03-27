@@ -141,7 +141,9 @@ function startGulp(name, opts) {
 
     gulp.task('browser:compressed', ['browser:uncompressed'], function() {
       return gulp.src(fullname + '.js')
-        .pipe(babel())
+        .pipe(babel({
+            presets: ['@babel/env']  
+         }))
         .pipe(uglify({
           mangle: true,
           compress: true
